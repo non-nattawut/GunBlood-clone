@@ -1,0 +1,5 @@
+# Project gitignore
+.Library/
+.Logs/
+.Temp/
+.UserSettings/
