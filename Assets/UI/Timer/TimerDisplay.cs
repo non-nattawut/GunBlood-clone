@@ -8,8 +8,8 @@ public class TimerDisplay : MonoBehaviour
     public GameObject timer;
     public Text timer_text;
 
-    private float current_time = 0;
     public float time = 3;
+    private float current_time = 0;
 
     private void OnEnable()
     {
@@ -29,8 +29,8 @@ public class TimerDisplay : MonoBehaviour
             current_time += Time.deltaTime;
             if (current_time >= 1)
             {
-                current_time = 0;
                 time -= 1;
+                current_time = 0;
             }
 
             if (time >= 1)
@@ -51,8 +51,8 @@ public class TimerDisplay : MonoBehaviour
 
     public void ResetTimer()
     {
-        current_time = 0;
         time = 3;
+        current_time = 0;
         timer_text.text = time.ToString();
     }
 }

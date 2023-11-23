@@ -7,35 +7,37 @@ public class PauseBehavior : MonoBehaviour
 {
     public GameObject timer;
     public Text pause_text;
-    public Text win_text;
+
+    private GameObject[] player_object;
 
     private bool win_archive = false;
 
     private void Start()
     {
-        pause_text.text = "Press Space to Go!";
+        player_object = GameObject.FindGameObjectsWithTag("Player");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && !timer.active)
         {
-            win_text.text = "";
+            foreach (GameObject i in player_object) // reset player already shoot
+            {
+                i.GetComponent<Player>().ResetPlayer();
+            }
+
             pause_text.text = "";
             timer.SetActive(true);
             win_archive = false;
         }
-
-        Debug.Log(win_archive);
     }
 
     public void Win(string player_name)
     {
         if (!win_archive)
         {
-            win_text.text = "Game Over!\n" + player_name + " Win!";
-            pause_text.text = "Press Space to Go!";
+            pause_text.text = "Game Over!\n" + player_name + " Win!\n" + "Press Space to Restart!";
             timer.SetActive(false);
             win_archive = true;
         }
